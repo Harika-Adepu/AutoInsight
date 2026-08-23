@@ -27,19 +27,16 @@ AutoInsight is a fully generic, end-to-end data pipeline that cleans, validates,
 - **Faster Insights** — Goes from a raw CSV to an interactive dashboard plus an AI-written summary with a single function call.
 - **Extensible Design** — Clear separation between loading, cleaning, validating, warehousing, and visualizing stages makes it straightforward to swap in new logic for any single step.
 
-## 📌 Current Dataset Scope & Roadmap
+## 📋 Dataset Compatibility
 
-AutoInsight is built to generalize across a wide range of real-world CSVs — flat, comma-delimited, single-header-row tabular data (the shape of most public datasets, like the movies, restaurant-tips, and IPL ball-by-ball datasets it's been tested on). A few boundaries define today's scope, each a clear direction for the next iteration:
+AutoInsight is built for standard, single-file tabular CSVs:
 
-- **File format** — Currently reads comma-delimited `.csv` files (URL or local). Extending the loader to support `.tsv`, semicolon-delimited files, and Excel is a natural next step.
-- **Encoding coverage** — Handles UTF-8 with automatic Latin-1 fallback, covering the vast majority of public datasets. Broader encoding detection (e.g. `chardet`-based auto-detection) is on the roadmap for fully international datasets.
-- **Numeric inference threshold** — Uses an 80% heuristic to decide whether a text column should convert to numeric, tuned to avoid false positives on ID-like columns. Making this threshold configurable per-column is a planned enhancement for edge-case datasets.
-- **Imputation strategy** — Fills missing values with median (numeric) / `"Unknown"` (text) as a robust default. Adding pluggable strategies (mode, forward-fill for time series, KNN imputation) would extend it to more specialized use cases.
-- **Single flat table** — Designed for one CSV at a time. Support for joining multiple related files is a logical next feature for relational datasets.
-- **In-memory processing** — Loads the full dataset into memory, which comfortably handles typical datasets (tested up to hundreds of thousands of rows). Chunked/streaming reads would extend this to multi-GB files.
-- **AI summaries** — Require a `GEMINI_API_KEY` environment variable; the pipeline runs fully without one, simply skipping that step.
+- **Format:** Comma-delimited `.csv`, single header row
+- **Encoding:** UTF-8 or Latin-1
+- **Structure:** Flat tabular data (no nested/multi-file joins)
+- **Size:** Best suited for datasets that comfortably fit in memory
 
-These aren't hard walls — they reflect where the pipeline is focused today, and each is a concrete direction for future contributions.
+Works reliably across mixed numeric/text columns and adapts automatically to each dataset's own schema.
 
 ## Usage
 
