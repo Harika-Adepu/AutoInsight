@@ -36,6 +36,8 @@ AutoInsight is built for standard, single-file tabular CSVs:
 - **Structure:** Flat tabular data (no nested/multi-file joins)
 - **Size:** Best suited for datasets that comfortably fit in memory
 
+Local Dataset (ball_by_ball_ipl) Link: https://www.kaggle.com/datasets/jamiewelsh2/ball-by-ball-ipl
+
 Works reliably across mixed numeric/text columns and adapts automatically to each dataset's own schema.
 
 ## Usage
